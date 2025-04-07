@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thiệp Mời Sinh Nhật</title>
+  <style>
+    body {
+      background-color: #cceeff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 20px;
+      color: #333;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .banner {
+      background-color: #ffccff;
+      color: #cc0066;
+      padding: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      animation: shake 1s infinite alternate;
+    }
+
+    @keyframes shake {
+      0% { transform: rotate(-1deg); }
+      100% { transform: rotate(1deg); }
+    }
+
+    .card {
+      background-color: #ffffffcc;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .card img {
+      width: 200px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #0066cc;
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    .guest-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ff3399;
+      margin-bottom: 10px;
+    }
+
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ff6699;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background-color: #ff3366;
+    }
+
+    .thanks {
+      margin-top: 15px;
+      font-size: 18px;
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      width: 30px;
+      height: 30px;
+      background-color: rgba(255, 182, 193, 0.7);
+      border-radius: 50%;
+      animation: floatUp 10s infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-1000px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Thiết kế responsive */
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .button {
+        font-size: 14px;
+      }
+    }
+
+    /* Danh sách người mời */
+    .guest-list {
+      margin-top: 20px;
+      text-align: left;
+      padding-left: 20px;
+      font-size: 18px;
+      color: #0066cc;
+      max-width: 400px;
+      margin: 30px auto;
+      text-align: left;
+    }
+
+    /* Trường nhập tên */
+    .input-name {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      width: 60%;
+      margin: 20px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Nhạc hiệu -->
+  <audio autoplay>
+    <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+    Trình duyệt của bạn không hỗ trợ phát âm thanh.
+  </audio>
+
+  <!-- Bong bóng bay -->
+  <script>
+    for (let i = 0; i < 20; i++) {
+      let bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+      bubble.style.left = Math.random() * 100 + 'vw';
+      bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
+      document.body.appendChild(bubble);
+    }
+
+    // Hàm xác nhận tham gia
+    function confirmAttendance() {
+      let guestName = document.getElementById('guest-name-input').value;
+      if (guestName) {
+        document.getElementById('thanks').style.display = 'block';
+        document.getElementById('attendees').innerHTML = "Danh sách tham gia: " + guestName;
+        document.getElementById('guest-name-display').innerHTML = guestName;
+      } else {
+        alert("Vui lòng nhập tên của bạn!");
+      }
+    }
+  </script>
+
+  <!-- Băng rôn -->
+  <div class="banner">🎉 Chúc Mừng Sinh Nhật 🎉</div>
+
+  <!-- Thiệp -->
+  <div class="card">
+    <img src="https://i.imgur.com/2kZ11MU.jpeg" alt="Ảnh dễ thương">
+    <h1>🎂 Thiệp Mời Sinh Nhật 🎂</h1>
+    
+    <!-- Trường nhập tên -->
+    <div class="guest-name">
+      Kính mời: <span id="guest-name-display">______</span>
+    </div>
+    <input type="text" id="guest-name-input" class="input-name" placeholder="Nhập tên của bạn...">
+    
+    <p>Vào lúc <strong>5 giờ chiều, Thứ 4 ngày 9/4/2025</strong></p>
+    <p>Địa điểm: <strong>nhà Trí</strong></p>
+    <p>Rất mong bạn đến chung vui! 🥳</p>
+    
+    <!-- Nút xác nhận -->
+    <button class="button" onclick="confirmAttendance()">Tôi sẽ đến!</button>
+    <div id="thanks" class="thanks">💚 Cảm ơn bạn! Hẹn gặp tại bữa tiệc nha! 💚</div>
+    <p id="attendees"></p>
+
+    <!-- Danh sách người mời -->
+    <div class="guest-list">
+      <strong>Danh sách người mời:</strong>
+      <ul>
+        <li>Gia Huy</li>
+        <li>Vũ</li>
+        <li>Tường</li>
+        <li>Lê Huy</li>
+        <li>Nhiều</li>
+        <li>Phúc</li>
+        <li>Khang</li>
+        <li>Tuấn Phát</li>
+        <li>Bảo Lâm</li>
+        <li>Hiếu</li>
+        <li>Beo</li>
+        <li>Nhàn</li>
+        <li>Thùy Dương</li>
+        <li>Trâm</li>
+        <li>Bích Ngọc</li>
+        <li>Hậu</li>
+        <li>Khoa</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
