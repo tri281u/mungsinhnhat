@@ -135,18 +135,6 @@
       margin: 10px auto;
       display: block;
     }
-
-    /* Cấu trúc danh sách tên */
-    .guest-list {
-      margin-top: 20px;
-      text-align: left;
-      padding-left: 20px;
-      font-size: 18px;
-      color: #0066cc;
-      max-width: 400px;
-      margin: 30px auto;
-      text-align: left;
-    }
   </style>
 </head>
 <body>
@@ -168,40 +156,23 @@
 
     // Hàm xác nhận tham gia và lưu tên vào localStorage
     function confirmAttendance() {
-      let guestNames = [];
-      let inputs = document.querySelectorAll('.guest-input');
-      
-      inputs.forEach(input => {
-        if (input.value) {
-          guestNames.push(input.value);
-        }
-      });
-
-      if (guestNames.length > 0) {
-        localStorage.setItem('guestNames', JSON.stringify(guestNames)); // Lưu tên vào localStorage
+      let guestName = document.getElementById('guest-name-input').value;
+      if (guestName) {
+        localStorage.setItem('guestName', guestName); // Lưu tên vào localStorage
         document.getElementById('thanks').style.display = 'block';
-        displayGuestNames();
+        document.getElementById('guest-name-display').innerHTML = guestName;
       } else {
         alert("Vui lòng nhập tên của bạn!");
       }
     }
 
-    // Hiển thị danh sách tên đã nhập
-    function displayGuestNames() {
-      let guestNames = JSON.parse(localStorage.getItem('guestNames'));
-      let guestListElement = document.getElementById('guest-list');
-      guestListElement.innerHTML = '<strong>Danh sách người mời đã tham gia:</strong>';
-      
-      guestNames.forEach(name => {
-        let listItem = document.createElement('li');
-        listItem.textContent = name;
-        guestListElement.appendChild(listItem);
-      });
-    }
-
     // Khi trang web được tải lại, hiển thị tên đã lưu
     window.onload = function() {
-      displayGuestNames();
+      let storedName = localStorage.getItem('guestName');
+      if (storedName) {
+        document.getElementById('guest-name-display').innerHTML = storedName;
+        document.getElementById('thanks').style.display = 'block';
+      }
     };
   </script>
 
@@ -213,38 +184,22 @@
     <img src="https://i.imgur.com/2kZ11MU.jpeg" alt="Ảnh dễ thương">
     <h1>🎂 Thiệp Mời Sinh Nhật 🎂</h1>
     
+    <!-- Trường nhập tên -->
+    <div class="guest-name">
+      Kính mời: <span id="guest-name-display">______</span>
+    </div>
+    <input type="text" id="guest-name-input" class="input-name" placeholder="Nhập tên của bạn...">
+    
     <p>Vào lúc <strong>5 giờ chiều, Thứ 4 ngày 9/4/2025</strong></p>
     <p>Địa điểm: <strong>nhà Trí</strong></p>
     <p>Rất mong bạn đến chung vui! 🥳</p>
     
-    <!-- Các trường nhập tên cho từng người -->
-    <div class="guest-name">Kính mời các bạn sau:</div>
-    
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Gia Huy">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Vũ">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Tường">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Lê Huy">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Nhiều">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Phúc">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Khang">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Tuấn Phát">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Bảo Lâm">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Hiếu">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Beo">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Nhàn">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Thùy Dương">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Trâm">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Bích Ngọc">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Hậu">
-    <input type="text" class="input-name guest-input" placeholder="Nhập tên Khoa">
-    
-    <button class="button" onclick="confirmAttendance()">Xác nhận tham gia</button>
+    <!-- Nút xác nhận -->
+    <button class="button" onclick="confirmAttendance()">Tôi sẽ đến!</button>
     <div id="thanks" class="thanks">💚 Cảm ơn bạn! Hẹn gặp tại bữa tiệc nha! 💚</div>
-    
-    <!-- Hiển thị danh sách những người tham gia -->
-    <div id="guest-list" class="guest-list"></div>
 
   </div>
 </body>
 </html>
+
 
