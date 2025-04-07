@@ -2,19 +2,18 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thiệp Mời Sinh Nhật</title>
   <style>
     body {
       background-color: #cceeff;
       font-family: 'Arial', sans-serif;
       text-align: center;
-      padding: 20px;
+      padding: 40px;
       color: #333;
-      margin: 0;
       overflow: hidden;
     }
 
+    /* Băng rôn */
     .banner {
       background-color: #ffccff;
       color: #cc0066;
@@ -32,6 +31,7 @@
       100% { transform: rotate(1deg); }
     }
 
+    /* Thiệp */
     .card {
       background-color: #ffffffcc;
       border-radius: 20px;
@@ -58,6 +58,14 @@
       font-size: 18px;
     }
 
+    .guest-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ff3399;
+      margin-bottom: 10px;
+    }
+
+    /* Nút xác nhận */
     .button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -82,6 +90,7 @@
       display: none;
     }
 
+    /* Bong bóng */
     .bubble {
       position: absolute;
       bottom: -100px;
@@ -100,21 +109,6 @@
       100% {
         transform: translateY(-1000px) scale(1.5);
         opacity: 0;
-      }
-    }
-
-    /* Thiết kế responsive */
-    @media (max-width: 600px) {
-      .card {
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-
-      .button {
-        font-size: 14px;
       }
     }
   </style>
@@ -142,19 +136,20 @@
 
   <!-- Thiệp -->
   <div class="card">
+    <!-- Thay thế đường dẫn ảnh ở đây -->
     <img src="https://i.imgur.com/2kZ11MU.jpeg" alt="Ảnh dễ thương">
     <h1>🎂 Thiệp Mời Sinh Nhật 🎂</h1>
-    
-    <!-- Phần kính mời bạn -->
-    <p><strong>Kính mời bạn:</strong> [Tên Người Mời]</p>
-    
+    <div class="guest-name">Kính mời: <span>______</span></div>
     <p>Vào lúc <strong>5 giờ chiều, Thứ 4 ngày 9/4/2025</strong></p>
     <p>Địa điểm: <strong>nhà Trí</strong></p>
     <p>Rất mong bạn đến chung vui! 🥳</p>
     
     <!-- Nút xác nhận -->
-    <button class="button">Tôi sẽ đến!</button>
+    <button class="button" onclick="document.getElementById('thanks').style.display='block'">
+      Tôi sẽ đến!
+    </button>
     <div id="thanks" class="thanks">💚 Cảm ơn bạn! Hẹn gặp tại bữa tiệc nha! 💚</div>
   </div>
 </body>
 </html>
+
