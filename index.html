@@ -2,19 +2,18 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thiệp Mời Sinh Nhật</title>
   <style>
     body {
       background-color: #cceeff;
       font-family: 'Arial', sans-serif;
       text-align: center;
-      padding: 20px;
+      padding: 40px;
       color: #333;
-      margin: 0;
       overflow: hidden;
     }
 
+    /* Băng rôn */
     .banner {
       background-color: #ffccff;
       color: #cc0066;
@@ -32,6 +31,7 @@
       100% { transform: rotate(1deg); }
     }
 
+    /* Thiệp */
     .card {
       background-color: #ffffffcc;
       border-radius: 20px;
@@ -65,6 +65,7 @@
       margin-bottom: 10px;
     }
 
+    /* Nút xác nhận */
     .button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -89,6 +90,7 @@
       display: none;
     }
 
+    /* Bong bóng */
     .bubble {
       position: absolute;
       bottom: -100px;
@@ -108,44 +110,6 @@
         transform: translateY(-1000px) scale(1.5);
         opacity: 0;
       }
-    }
-
-    /* Thiết kế responsive */
-    @media (max-width: 600px) {
-      .card {
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-
-      .button {
-        font-size: 14px;
-      }
-    }
-
-    /* Danh sách người mời */
-    .guest-list {
-      margin-top: 20px;
-      text-align: left;
-      padding-left: 20px;
-      font-size: 18px;
-      color: #0066cc;
-      max-width: 400px;
-      margin: 30px auto;
-      text-align: left;
-    }
-
-    /* Trường nhập tên */
-    .input-name {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      width: 60%;
-      margin: 20px auto;
-      display: block;
     }
   </style>
 </head>
@@ -168,13 +132,10 @@
 
     // Hàm xác nhận tham gia
     function confirmAttendance() {
-      let guestName = document.getElementById('guest-name-input').value;
+      let guestName = prompt("Xin vui lòng nhập tên của bạn để xác nhận tham dự!");
       if (guestName) {
         document.getElementById('thanks').style.display = 'block';
         document.getElementById('attendees').innerHTML = "Danh sách tham gia: " + guestName;
-        document.getElementById('guest-name-display').innerHTML = guestName;
-      } else {
-        alert("Vui lòng nhập tên của bạn!");
       }
     }
   </script>
@@ -186,13 +147,7 @@
   <div class="card">
     <img src="https://i.imgur.com/2kZ11MU.jpeg" alt="Ảnh dễ thương">
     <h1>🎂 Thiệp Mời Sinh Nhật 🎂</h1>
-    
-    <!-- Trường nhập tên -->
-    <div class="guest-name">
-      Kính mời: <span id="guest-name-display">______</span>
-    </div>
-    <input type="text" id="guest-name-input" class="input-name" placeholder="Nhập tên của bạn...">
-    
+    <div class="guest-name">Kính mời: <span>______</span></div>
     <p>Vào lúc <strong>5 giờ chiều, Thứ 4 ngày 9/4/2025</strong></p>
     <p>Địa điểm: <strong>nhà Trí</strong></p>
     <p>Rất mong bạn đến chung vui! 🥳</p>
@@ -200,31 +155,7 @@
     <!-- Nút xác nhận -->
     <button class="button" onclick="confirmAttendance()">Tôi sẽ đến!</button>
     <div id="thanks" class="thanks">💚 Cảm ơn bạn! Hẹn gặp tại bữa tiệc nha! 💚</div>
-    <p id="attendees"></p>
-
-    <!-- Danh sách người mời -->
-    <div class="guest-list">
-      <strong>Danh sách người mời:</strong>
-      <ul>
-        <li>Gia Huy</li>
-        <li>Vũ</li>
-        <li>Tường</li>
-        <li>Lê Huy</li>
-        <li>Nhiều</li>
-        <li>Phúc</li>
-        <li>Khang</li>
-        <li>Tuấn Phát</li>
-        <li>Bảo Lâm</li>
-        <li>Hiếu</li>
-        <li>Beo</li>
-        <li>Nhàn</li>
-        <li>Thùy Dương</li>
-        <li>Trâm</li>
-        <li>Bích Ngọc</li>
-        <li>Hậu</li>
-        <li>Khoa</li>
-      </ul>
-    </div>
+    <p id="attendees"></p> <!-- Hiển thị danh sách người tham gia -->
   </div>
 </body>
 </html>
