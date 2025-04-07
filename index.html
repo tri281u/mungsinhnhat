@@ -58,13 +58,6 @@
       font-size: 18px;
     }
 
-    .guest-name {
-      font-size: 20px;
-      font-weight: bold;
-      color: #ff3399;
-      margin-bottom: 10px;
-    }
-
     .button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -124,17 +117,6 @@
         font-size: 14px;
       }
     }
-
-    /* Trường nhập tên */
-    .input-name {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      width: 60%;
-      margin: 10px auto;
-      display: block;
-    }
   </style>
 </head>
 <body>
@@ -153,27 +135,6 @@
       bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
       document.body.appendChild(bubble);
     }
-
-    // Hàm xác nhận tham gia và lưu tên vào localStorage
-    function confirmAttendance() {
-      let guestName = document.getElementById('guest-name-input').value;
-      if (guestName) {
-        localStorage.setItem('guestName', guestName); // Lưu tên vào localStorage
-        document.getElementById('thanks').style.display = 'block';
-        document.getElementById('guest-name-display').innerHTML = guestName;
-      } else {
-        alert("Vui lòng nhập tên của bạn!");
-      }
-    }
-
-    // Khi trang web được tải lại, hiển thị tên đã lưu
-    window.onload = function() {
-      let storedName = localStorage.getItem('guestName');
-      if (storedName) {
-        document.getElementById('guest-name-display').innerHTML = storedName;
-        document.getElementById('thanks').style.display = 'block';
-      }
-    };
   </script>
 
   <!-- Băng rôn -->
@@ -184,23 +145,13 @@
     <img src="https://i.imgur.com/2kZ11MU.jpeg" alt="Ảnh dễ thương">
     <h1>🎂 Thiệp Mời Sinh Nhật 🎂</h1>
     
-    <!-- Trường nhập tên -->
-    <div class="guest-name">
-      Kính mời: <span id="guest-name-display">______</span>
-    </div>
-    <input type="text" id="guest-name-input" class="input-name" placeholder="Nhập tên của bạn...">
-    
     <p>Vào lúc <strong>5 giờ chiều, Thứ 4 ngày 9/4/2025</strong></p>
     <p>Địa điểm: <strong>nhà Trí</strong></p>
     <p>Rất mong bạn đến chung vui! 🥳</p>
     
     <!-- Nút xác nhận -->
-    <button class="button" onclick="confirmAttendance()">Tôi sẽ đến!</button>
+    <button class="button">Tôi sẽ đến!</button>
     <div id="thanks" class="thanks">💚 Cảm ơn bạn! Hẹn gặp tại bữa tiệc nha! 💚</div>
-
   </div>
 </body>
 </html>
-
-
-
