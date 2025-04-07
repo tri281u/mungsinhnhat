@@ -2,18 +2,19 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thiệp Mời Sinh Nhật</title>
   <style>
     body {
       background-color: #cceeff;
       font-family: 'Arial', sans-serif;
       text-align: center;
-      padding: 40px;
+      padding: 20px;
       color: #333;
+      margin: 0;
       overflow: hidden;
     }
 
-    /* Băng rôn */
     .banner {
       background-color: #ffccff;
       color: #cc0066;
@@ -31,7 +32,6 @@
       100% { transform: rotate(1deg); }
     }
 
-    /* Thiệp */
     .card {
       background-color: #ffffffcc;
       border-radius: 20px;
@@ -65,7 +65,6 @@
       margin-bottom: 10px;
     }
 
-    /* Nút xác nhận */
     .button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -90,7 +89,6 @@
       display: none;
     }
 
-    /* Bong bóng */
     .bubble {
       position: absolute;
       bottom: -100px;
@@ -111,6 +109,44 @@
         opacity: 0;
       }
     }
+
+    /* Thiết kế responsive */
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .button {
+        font-size: 14px;
+      }
+    }
+
+    /* Trường nhập tên */
+    .input-name {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      width: 60%;
+      margin: 10px auto;
+      display: block;
+    }
+
+    /* Cấu trúc danh sách tên */
+    .guest-list {
+      margin-top: 20px;
+      text-align: left;
+      padding-left: 20px;
+      font-size: 18px;
+      color: #0066cc;
+      max-width: 400px;
+      margin: 30px auto;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -130,14 +166,43 @@
       document.body.appendChild(bubble);
     }
 
-    // Hàm xác nhận tham gia
+    // Hàm xác nhận tham gia và lưu tên vào localStorage
     function confirmAttendance() {
-      let guestName = prompt("Xin vui lòng nhập tên của bạn để xác nhận tham dự!");
-      if (guestName) {
+      let guestNames = [];
+      let inputs = document.querySelectorAll('.guest-input');
+      
+      inputs.forEach(input => {
+        if (input.value) {
+          guestNames.push(input.value);
+        }
+      });
+
+      if (guestNames.length > 0) {
+        localStorage.setItem('guestNames', JSON.stringify(guestNames)); // Lưu tên vào localStorage
         document.getElementById('thanks').style.display = 'block';
-        document.getElementById('attendees').innerHTML = "Danh sách tham gia: " + guestName;
+        displayGuestNames();
+      } else {
+        alert("Vui lòng nhập tên của bạn!");
       }
     }
+
+    // Hiển thị danh sách tên đã nhập
+    function displayGuestNames() {
+      let guestNames = JSON.parse(localStorage.getItem('guestNames'));
+      let guestListElement = document.getElementById('guest-list');
+      guestListElement.innerHTML = '<strong>Danh sách người mời đã tham gia:</strong>';
+      
+      guestNames.forEach(name => {
+        let listItem = document.createElement('li');
+        listItem.textContent = name;
+        guestListElement.appendChild(listItem);
+      });
+    }
+
+    // Khi trang web được tải lại, hiển thị tên đã lưu
+    window.onload = function() {
+      displayGuestNames();
+    };
   </script>
 
   <!-- Băng rôn -->
@@ -147,15 +212,39 @@
   <div class="card">
     <img src="https://i.imgur.com/2kZ11MU.jpeg" alt="Ảnh dễ thương">
     <h1>🎂 Thiệp Mời Sinh Nhật 🎂</h1>
-    <div class="guest-name">Kính mời: <span>______</span></div>
+    
     <p>Vào lúc <strong>5 giờ chiều, Thứ 4 ngày 9/4/2025</strong></p>
     <p>Địa điểm: <strong>nhà Trí</strong></p>
     <p>Rất mong bạn đến chung vui! 🥳</p>
     
-    <!-- Nút xác nhận -->
-    <button class="button" onclick="confirmAttendance()">Tôi sẽ đến!</button>
+    <!-- Các trường nhập tên cho từng người -->
+    <div class="guest-name">Kính mời các bạn sau:</div>
+    
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Gia Huy">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Vũ">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Tường">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Lê Huy">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Nhiều">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Phúc">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Khang">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Tuấn Phát">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Bảo Lâm">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Hiếu">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Beo">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Nhàn">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Thùy Dương">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Trâm">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Bích Ngọc">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Hậu">
+    <input type="text" class="input-name guest-input" placeholder="Nhập tên Khoa">
+    
+    <button class="button" onclick="confirmAttendance()">Xác nhận tham gia</button>
     <div id="thanks" class="thanks">💚 Cảm ơn bạn! Hẹn gặp tại bữa tiệc nha! 💚</div>
-    <p id="attendees"></p> <!-- Hiển thị danh sách người tham gia -->
+    
+    <!-- Hiển thị danh sách những người tham gia -->
+    <div id="guest-list" class="guest-list"></div>
+
   </div>
 </body>
 </html>
+
